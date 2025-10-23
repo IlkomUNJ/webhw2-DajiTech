@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <title>{{ product.name }} - Dajistore</title>
+  <link rel="stylesheet" href="/Dajistyle.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="brand">
+      <img src="/Dajicon.png" alt="Icon Store" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="/" >Home</a></li>
+      <li><a href="/cart"><i class="fa fa-shopping-cart"></i></a></li>
+      <li><a href="/profile"><i class="fa fa-user"></i></a></li>
+    </ul>
+  </nav>
+  <main>
+    <section class="product-display">
+      <img src="/Products/{{ product.image }}" alt="{{ product.name }}" />
+      <h1>{{ product.name }}</h1>
+      <p>Rp{{ product.price.toLocaleString('id-ID') }}</p>
+      <form method="POST" action="/cart/add/{{ product.id }}">
+        @csrf
+        <button type="submit">Tambah ke Keranjang</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

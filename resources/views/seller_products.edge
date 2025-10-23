@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Produk Seller - Dajistore</title>
+  <link rel="stylesheet" href="/Dajistyle.css"/>
+</head>
+<body>
+  <h1>Produk Saya</h1>
+  <form method="POST" action="/seller/products/add">
+    @csrf
+    <label>Nama Produk: <input type="text" name="name" required></label><br/>
+    <label>Harga: <input type="number" name="price" required></label><br/>
+    <label>Gambar (path): <input type="text" name="image" required></label><br/>
+    <label>Kategori: 
+      <select name="category" required>
+        <option value="laptop">Laptop</option>
+        <option value="phone">Phone</option>
+      </select>
+    </label><br/>
+    <button type="submit">Tambah Produk</button>
+  </form>
+
+  <h2>Daftar Produk</h2>
+  <ul>
+    @each(product in products)
+      <li>{{ product.name }} - Rp{{ product.price.toLocaleString('id-ID') }}</li>
+    @endeach
+  </ul>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Wishlist Saya - Dajistore</title>
+  <link rel="stylesheet" href="/Dajistyle.css" />
+</head>
+<body>
+  <h1>Wishlist Saya</h1>
+  @if(wishlistItems.length)
+    <ul>
+      @each(item in wishlistItems)
+        <li>
+          {{ item.product.name }} - Rp{{ item.product.price.toLocaleString('id-ID') }}
+          <form method="POST" action="/wishlist/remove/{{ item.product.id }}">
+            @csrf
+            <button type="submit">Hapus</button>
+          </form>
+        </li>
+      @endeach
+    </ul>
+  @else
+    <p>Wishlist Anda kosong.</p>
+  @endif
+</body>
+</html>

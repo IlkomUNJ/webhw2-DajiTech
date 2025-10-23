@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dajistore - Home</title>
+  <link rel="stylesheet" href="/Dajistyle.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="brand">
+      <img src="/Dajicon.png" alt="Icon Store" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="/" class="active">Home</a></li>
+      <li><a href="#laptop">Laptop</a></li>
+      <li><a href="#phone">Phone</a></li>
+      <li><a href="/cart"><i class="fa fa-shopping-cart"></i></a></li>
+      <li><a href="/profile"><i class="fa fa-user"></i></a></li>
+    </ul>
+  </nav>
+  <header class="hero">
+    <h1>Selamat Datang di Dajistore!</h1>
+    <p>Toko elektronik terpercaya untuk kebutuhan laptop & handphone Anda</p>
+  </header>
+  <main>
+    <section id="laptop" class="product-section">
+      <h2>Gaming Laptop</h2>
+      <div class="product-list">
+        @each(laptop in laptops)
+          <div class="product-card">
+            <img src="/Products/{{ laptop.image }}" alt="{{ laptop.name }}" />
+            <h3>{{ laptop.name }}</h3>
+            <p>Rp{{ laptop.price.toLocaleString('id-ID') }}</p>
+            <form method="POST" action="/cart/add/{{ laptop.id }}">
+              @csrf
+              <button type="submit">Beli</button>
+            </form>
+          </div>
+        @endeach
+      </div>
+    </section>
+    <section id="phone" class="product-section">
+      <h2>Luxurious Smartphone</h2>
+      <div class="product-list">
+        @each(phone in phones)
+          <div class="product-card">
+            <img src="/Products/{{ phone.image }}" alt="{{ phone.name }}" />
+            <h3>{{ phone.name }}</h3>
+            <p>Rp{{ phone.price.toLocaleString('id-ID') }}</p>
+            <form method="POST" action="/cart/add/{{ phone.id }}">
+              @csrf
+              <button type="submit">Beli</button>
+            </form>
+          </div>
+        @endeach
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-info">
+      <p>&copy; 2025 Dajistore. All rights reserved.</p>
+      <p>Alamat: Jl. Kisamaun No. 121 Pasar Lama, RT.005/RW.006, Sukasari, Kec. Tangerang, Kota Tangerang, Banten 15118 | Email: info@dajistore.com | Telp: 021-12345678</p>
+    </div>
+  </footer>
+</body>
+</html>

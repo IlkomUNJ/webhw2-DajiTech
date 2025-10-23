@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Register - Dajistore</title>
+</head>
+<body>
+  <h1>Buat Akun Baru</h1>
+  <form method="POST" action="/register">
+    @csrf
+    <label>Username: <input type="text" name="username" required></label><br/>
+    <label>Email: <input type="email" name="email" required></label><br/>
+    <label>Password: <input type="password" name="password" required></label><br/>
+    <button type="submit">Daftar</button>
+  </form>
+  <p>Sudah punya akun? <a href="/login">Masuk di sini</a></p>
+</body>
+</html>

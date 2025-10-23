@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dajistore - Shopping Cart</title>
+  <link rel="stylesheet" href="/shoppingstyle.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="brand">
+      <img src="/Dajicon.png" alt="Icon Store" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/cart" class="active"><i class="fa fa-shopping-cart"></i></a></li>
+    </ul>
+  </nav>
+  <main>
+    <section class="cart-section">
+      <h2>🛒 Orderan Anda</h2>
+      <div class="cart-list">
+        @each(product in products)
+          <div class="cart-item">
+            <img src="/Products/{{ product.image }}" alt="{{ product.name }}" />
+            <div class="cart-item-info">
+              <div class="cart-item-title">{{ product.name }}</div>
+              <div class="cart-item-price">Rp{{ product.price.toLocaleString('id-ID') }}</div>
+              <form method="POST" action="/cart/remove/{{ product.id }}">
+                @csrf
+                <button class="cart-remove" type="submit"><i class="fa fa-trash"></i> Hapus</button>
+              </form>
+            </div>
+          </div>
+        @endeach
+      </div>
+      <div class="cart-summary">
+        <?php
+        let total = 0;
+        for (let product of products) { total += product.price; }
+        ?>
+        <div>Total Harga: <span>Rp{{ total.toLocaleString('id-ID') }}</span></div>
+        <div>Biaya Pengiriman: <span>Rp152.000</span></div>
+        <div class="cart-total">Total Pembayaran: <span>Rp{{ (total + 152000).toLocaleString('id-ID') }}</span></div>
+        <label for="order-popup" class="order-btn">Pesankan</label>
+      </div>
+    </section>
+  </main>
+  <input type="checkbox" id="order-popup" class="popup-toggle" hidden />
+  <div class="popup">
+    <div class="popup-content">
+      <div class="emoji">😊</div>
+      <h2>Pesanan anda sudah disiapkan</h2>
+      <p>Terima kasih telah berbelanja di Dajistore!<br />Silahkan menunggu selagi produk sedang kami kemas dan diantar ke rumah anda.</p>
+      <label for="order-popup" class="close-btn">Tutup</label>
+    </div>
+  </div>
+</body>
+</html>

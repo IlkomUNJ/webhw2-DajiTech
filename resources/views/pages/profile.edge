@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Profil Akun - Dajistore</title>
+  <link rel="stylesheet" href="/Profilestyle.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="brand">
+      <img src="/Dajicon.png" alt="Icon Store"/>
+      Dajistore
+    </div>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/cart"><i class="fa fa-shopping-cart"></i></a></li>
+      <li><a href="/profile" class="active"><i class="fa fa-user"></i></a></li>
+    </ul>
+  </nav>
+  <main>
+    <section class="profile-section">
+      <div class="profile-header">
+        <img src="/Blank.png" alt="Foto Profil" class="profile-pic" />
+        <div>
+          <h2>Halo, {{ user.username }}</h2>
+          <p>Email: {{ user.email }}</p>
+        </div>
+        <a href="#" class="edit-btn"><i class="fa fa-edit"></i> Edit Profil</a>
+      </div>
+      <!-- Additional user info like address and order history to be loaded -->
+    </section>
+  </main>
+  <footer>
+    <div class="footer-info">
+      <p>&copy; 2025 Dajistore. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

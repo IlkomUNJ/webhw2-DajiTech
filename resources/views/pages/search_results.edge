@@ -1,0 +1,22 @@
+@extends('base')
+
+@section('content')
+<h2>Hasil Pencarian untuk "{{ query }}"</h2>
+<div class="product-list">
+  @if(products.length)
+    @each(product in products)
+      <div class="product-card">
+        <img src="/Products/{{ product.image }}" alt="{{ product.name }}" />
+        <h3>{{ product.name }}</h3>
+        <p>Rp{{ product.price.toLocaleString('id-ID') }}</p>
+        <form method="POST" action="/cart/add/{{ product.id }}">
+          @csrf
+          <button type="submit">Beli</button>
+        </form>
+      </div>
+    @endeach
+  @else
+    <p>Tidak ada produk yang ditemukan.</p>
+  @endif
+</div>
+@endsection
